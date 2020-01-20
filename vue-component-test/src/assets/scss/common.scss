@@ -1,0 +1,10 @@
+$color--default: #fff;
+$color--primary: #07c160;
+$color--info: #1989fa;
+$color--danger: #ee0a24;
+$color--warning: #ff976a;
+
+.state--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

@@ -2,10 +2,12 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    // 可以防止出现隐式的any
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
+    "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
