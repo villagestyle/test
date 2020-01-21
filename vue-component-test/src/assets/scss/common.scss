@@ -4,7 +4,12 @@ $color--info: #1989fa;
 $color--danger: #ee0a24;
 $color--warning: #ff976a;
 
+* {
+  border: none;
+  outline: none;
+}
+
 .state--disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
