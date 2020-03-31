@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <section>
+    <!-- <section>
       <p class="title">按钮</p>
       <div>type属性</div>
       <self-button>默认按钮</self-button>
@@ -35,29 +35,68 @@
       <p class="title">输入框</p>
       <input type="text" v-model="testValue" placeholder="原生的input">
       <self-input placeholder="请输入" v-model="testValue"></self-input>
-    </section>
+    </section>-->
+    <!-- <section>
+      <tree-list :treeData="treeData" v-model="treeKey" @input="inputHandle"></tree-list>
+    </section>-->
+
+    <self-button type="warn" @click="getMessage">警告按钮</self-button>
   </div>
 </template>
 
 <script lang="ts">
 import SelfButton from "../components/button/index.vue";
 import SelfInput from "../components/input/index.vue";
+import TreeList from "../components/Tree/index.vue";
+import { message } from "../components/message/index.vue";
 import { Vue, Component } from "vue-property-decorator";
 
 @Component({
-  components: { SelfButton, SelfInput }
+  components: { SelfButton, SelfInput, TreeList }
 })
 export default class Home extends Vue {
-  private testValue: string = '';
+  private testValue: string = "";
+  private treeKey: string | number = "";
+  private treeData: any[] = [
+    {
+      text: "测试1",
+      id: "1",
+      checked: true,
+      hasChildren: true,
+      children: [
+        { text: "测试2", id: "2", checked: false, hasChildren: false },
+        {
+          text: "测试3",
+          id: "3",
+          checked: true,
+          hasChildren: false,
+          children: [
+            { text: "测试31", id: "31", checked: false, hasChildren: false },
+            { text: "测试32", id: "32", checked: false, hasChildren: false },
+            { text: "测试33", id: "33", checked: false, hasChildren: false }
+          ]
+        }
+      ]
+    }
+  ];
 
   mounted() {
-    setTimeout(() => {
-      this.testValue = '123456';
-    }, 2000);
+    // setTimeout(() => {
+    //   this.testValue = "123456";
+    // }, 2000);
   }
 
   private clickHandle() {
     alert("11");
+  }
+
+  private inputHandle() {
+    console.warn(this.treeKey);
+    console.warn(this.treeData);
+  }
+
+  private getMessage() {
+    message("这是一段提示文本", "提示");
   }
 }
 </script>
