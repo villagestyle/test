@@ -40,7 +40,19 @@
       <tree-list :treeData="treeData" v-model="treeKey" @input="inputHandle"></tree-list>
     </section>-->
 
-    <self-button type="warn" @click="getMessage">警告按钮</self-button>
+    <self-button type="warn" @click="getMessage('测试', 3)"
+      >警告按钮</self-button
+    >
+    <self-button type="primary" @click="getMessage('圆角按钮', 1)" :round="true"
+      >圆角按钮</self-button
+    >
+    <self-button
+      type="info"
+      size="small"
+      :round="true"
+      @click="getMessage('小按钮测试', 5)"
+      >小按钮</self-button
+    >
   </div>
 </template>
 
@@ -49,6 +61,8 @@ import SelfButton from "../components/button/index.vue";
 import SelfInput from "../components/input/index.vue";
 import TreeList from "../components/Tree/index.vue";
 import { message } from "../components/message/index.vue";
+import { toast } from "../components/Toast/index.vue";
+import { notify } from "../components/Notify/index.vue";
 import { Vue, Component } from "vue-property-decorator";
 
 @Component({
@@ -81,9 +95,14 @@ export default class Home extends Vue {
   ];
 
   mounted() {
-    // setTimeout(() => {
-    //   this.testValue = "123456";
-    // }, 2000);
+    for(let i = 0; i < 10; i++) {
+      setTimeout(() => {
+        notify({
+          message: '第' + i + '个',
+          delay: 3
+        })
+      }, 500 * i)
+    }
   }
 
   private clickHandle() {
@@ -95,13 +114,18 @@ export default class Home extends Vue {
     console.warn(this.treeData);
   }
 
-  private getMessage() {
-    message("这是一段提示文本", "提示");
+  private getMessage(context: string, delay: number) {
+    // message("这是一段提示文本", "提示");
+    notify({
+      message: context,
+      delay
+    });
   }
 }
 </script>
 <style lang="scss">
 .home {
+  text-align: left;
   div {
     margin-top: 35px;
     margin-bottom: 15px;

@@ -46,8 +46,7 @@ const Message = {
   }
 };
 
-// TODO: 作用是什么?
-export default Message; // 不写的话: Cannot set property 'render' of undefined
+export default Message;
 // 使用单例模式
 let instanceCache;
 export const message = function(text, title, onComfirm = () => {}) {
